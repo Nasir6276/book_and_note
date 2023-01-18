@@ -3,21 +3,24 @@ const mongoose = require('mongoose');
 const PostSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
+    },
+    desc: {
+        type: String,
+        require: true
     },
     photo: {
         type: String,
-        required: true
+        required: false
     },
     username: {
-        type: {
-            type:String,
-            required: true
-        },
-        categories: {
-            type: Array,
-            required: false
-        }
+        type:String,
+        required: true
+    },
+    categories: {
+        type: Array,
+        required: false
     }
 }, {
     timestamps: true
