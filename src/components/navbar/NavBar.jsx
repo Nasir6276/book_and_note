@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './navbar.css';
 import { Link } from 'react-router-dom';
-import profile from '../../images/profile.png'
+import { Context } from '../../context/Context';
 
 const NavBar = () => {
-    const user = true;
+    const {user, dispatch} = useContext(Context)
+    const PF = "http://localhost:5000/images/"
+
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' });
+    }
   return (
     <div className='navbar'>
         <div className="navbar_social-media">
@@ -27,14 +32,16 @@ const NavBar = () => {
                 <li className="navbar_menu-items_list">
                     <Link className='link' to='/write'>WRITE</Link>
                 </li>
-                <li className="navbar_menu-items_list">
+                <li className="navbar_menu-items_list" onClick={handleLogout}>
                     {user && "LOGOUT"}
                 </li>
             </ul>
         </div>
         <div className="navbar_profile">
             {user ? (
-                <img className='navbar_profile-image' src={profile} alt='profile' />
+                <Link to='/settings'>
+                    <img className='navbar_profile-image' src={PF+user.profilePic} alt='profile' />
+                </Link>
             ) : (
                 <ul className="navbar_menu-items">
                     <li className="navbar_menu-items_list">

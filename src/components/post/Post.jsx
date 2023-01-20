@@ -1,35 +1,30 @@
 import React from 'react'
 import './post.css';
-import PostIMG from '../../images/img4.jpg'
+import {Link} from 'react-router-dom'
 
-const Post = () => {
+const Post = ({post}) => {
+    const PF = 'http://localhost:5000/images/'
   return (
     <div className='post'>
-        <img className='post_img' src={PostIMG} alt="" />
+        {post.photo && (
+            <img className='post_img' src={PF + post.photo} alt="" />
+        )}
         <div className="post_info">
             <div className="post_categories">
-                <span className="post_category">Music</span>
-                <span className="post_category">Life</span>
+                {post.categories.map((c) => {
+                    <span className="post_category">{c.name}</span>
+                })}
             </div>
-            <span className="post_title">
-                Lorem ipsum dolor sit amet.
-            </span>
+            <Link to={`/post/${post._id}`} className="link">
+                <span className="post_title">
+                    {post.title}
+                </span>
+            </Link>
             <hr />
-            <span className="post_date">1 hour ago</span>
+            <span className="post_date">{new Date(post.createdAt).toDateString()}</span>
         </div>
         <p className="post_description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Veniam, facere ea officiis odio incidunt quas maiores explicabo 
-            nobis, eius ratione assumenda sit natus voluptatibus, laudantium 
-            mollitia nam praesentium culpa aliquid?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Veniam, facere ea officiis odio incidunt quas maiores explicabo 
-            nobis, eius ratione assumenda sit natus voluptatibus, laudantium 
-            mollitia nam praesentium culpa aliquid?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Veniam, facere ea officiis odio incidunt quas maiores explicabo 
-            nobis, eius ratione assumenda sit natus voluptatibus, laudantium 
-            mollitia nam praesentium culpa aliquid?
+            {post.desc}
         </p>
     </div>
   )
