@@ -1,0 +1,48 @@
+.singleBook {
+    flex: 9;
+}
+
+.singleBookWrapper {
+    width: 100%;
+    padding: 25px;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.file_Icon {
+    width: 100%;
+    font-size: 100px;
+    font-weight: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(165, 121, 121);
+}
+
+.singleBookTitle {
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+    font-family: 'Lora' serif;
+    font-size: 28px;
+}
+
+.singleBookEdit {
+    float: right;
+    font-size: 16px;
+}
+
+.singlepost_icon {
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.singlepost_info {
+    margin-right: 25px;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
