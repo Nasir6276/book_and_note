@@ -6,9 +6,13 @@ const BookSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    file: {
+    image: {
         type: String,
-        required: true
+        required: false
+    },
+    link: {
+        type: String,
+        required: false
     },
     username: {
         type:String,
