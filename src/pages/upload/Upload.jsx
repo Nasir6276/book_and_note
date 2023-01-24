@@ -7,6 +7,7 @@ import './upload.css'
 const Upload = () => {
     const [file, setFile] = useState(null);
     const [title, setTitle] = useState('');
+    const [link, setLink] = useState('');
     const {user} = useContext(Context)
 
     const handleSubmit = async (e) => {
@@ -14,13 +15,14 @@ const Upload = () => {
         const newBook = {
             username: user.username,
             title,
+            link
         };
         if(file) {
             const data = new FormData();
             const filename= Date.now() + file.name;
             data.append("name", filename);
             data.append('file', file)
-            newBook.file = filename;
+            newBook.image = filename;
             try {
                 await axios.post('http://localhost:5000/api/upload', data)
             } catch (err) {
@@ -34,12 +36,12 @@ const Upload = () => {
             
         }
     }
-    const pdfBlob = new Blob([file], {type: 'application/pdf'})
+    
   return (
     <div className='upload'>
-        {pdfBlob && (
-            <i className='file_icon fa-solid fa-file-lines'></i>
-        )}
+        {file && (
+            <img className='upload_img' src={URL.createObjectURL(file)} alt='postimg' />
+        )}   
         <form className='uploadForm' onSubmit={handleSubmit}>
             <div className="uploadFormGroup">
                 <label htmlFor="fileUpload">
@@ -48,8 +50,7 @@ const Upload = () => {
                 <input 
                     type="file" 
                     id='fileUpload' 
-                    style={{display:'none'}} 
-                    accept="application/pdf"
+                    style={{display:'none'}}
                     onChange={(e) => setFile(e.target.files[0])}
                 />
                 <input 
@@ -58,6 +59,12 @@ const Upload = () => {
                     className='uploadInput' 
                     autoFocus={true}
                     onChange={e=> setTitle(e.target.value)}
+                />
+                <input 
+                    type="text"
+                    placeholder='Download link'
+                    className='uploadInput'
+                    onChange={e=> setLink(e.target.value)}
                 />
             </div>
             <button className='uploadSubmit' type='submit' >Upload</button>

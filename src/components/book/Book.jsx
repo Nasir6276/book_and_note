@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import './book.css'
 
 const Book = ({book}) => {
+  const PF = 'http://localhost:5000/images/'
   return (
     <div className='book'>
-      {book.file && (
-        <i className='fileIcon fa-solid fa-file-lines'></i>
+      {book.image && (
+        <img className='uploadImg' src={PF + book.image} alt='postimg' />
       )} 
         <div className="bookInfo">
           <Link to={`/book/${book._id}`} className='link' >

@@ -7,6 +7,12 @@
     align-items: center;
 }
 
+.uploadImg {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+
 .fileIcon {
     width: 100px;
     font-size: 100px;
